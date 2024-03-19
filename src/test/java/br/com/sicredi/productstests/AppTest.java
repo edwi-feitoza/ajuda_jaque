@@ -1,4 +1,4 @@
-package br.com.sicredi;
+package br.com.sicredi.productstests;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,10 +1,6 @@
-package br.com.sicredi;
+package br.com.sicredi.productstests;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
