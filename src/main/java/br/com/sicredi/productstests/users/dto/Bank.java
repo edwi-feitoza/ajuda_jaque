@@ -1,4 +1,4 @@
-package br.com.sicredi.productstests.dto.user;
+package br.com.sicredi.productstests.users.dto;
 
 public record Bank(
         String cardExpire,

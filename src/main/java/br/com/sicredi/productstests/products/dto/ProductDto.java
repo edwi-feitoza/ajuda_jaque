@@ -1,4 +1,4 @@
-package br.com.sicredi.productstests.dto.products;
+package br.com.sicredi.productstests.products.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
