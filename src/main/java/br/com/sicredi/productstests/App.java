@@ -7,7 +7,6 @@ import br.com.sicredi.productstests.products.client.ProductsClient;
 import br.com.sicredi.productstests.products.dto.ProductDto;
 import br.com.sicredi.productstests.users.client.UsersClient;
 import br.com.sicredi.productstests.users.dto.UserDto;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;

@@ -7,9 +7,10 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-
 import java.io.IOException;
 import java.util.List;
+
+import static br.com.sicredi.productstests.exceptions.ApiExceptionTreament.throwIOException;
 
 public class ProductsClient {
 
@@ -28,7 +29,7 @@ public class ProductsClient {
                 .url(ROOT_URL + "/products")
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code:" + response);
+            if(!response.isSuccessful()) throwIOException(response);
             var dtoResponse = this.mapper.readValue(response.body().string(), ProductsDto.class);
             return dtoResponse.products();
         }
@@ -39,7 +40,7 @@ public class ProductsClient {
                 .url(ROOT_URL + "/products/" + productId )
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code:" + response);
+            if(!response.isSuccessful()) throwIOException(response);
             var dtoResponse = this.mapper.readValue(response.body().string(), ProductDto.class);
             return dtoResponse;
         }
@@ -51,7 +52,7 @@ public class ProductsClient {
                 .url(ROOT_URL + "/auth/products" )
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code:" + response);
+            if(!response.isSuccessful()) throwIOException(response);
             var dtoResponse = this.mapper.readValue(response.body().string(), ProductsDto.class);
             return dtoResponse.products();
         }
@@ -64,7 +65,7 @@ public class ProductsClient {
                 .post(RequestBody.create(requestBody, MediaType.parse("application/json")))
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code" + response);
+            if(!response.isSuccessful()) throwIOException(response);
             System.out.println(response.code());
             var responseBody = this.mapper.readValue(response.body().string(), ProductDto.class);
             return responseBody;

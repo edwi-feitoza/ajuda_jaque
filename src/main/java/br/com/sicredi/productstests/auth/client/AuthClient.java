@@ -7,8 +7,9 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-
 import java.io.IOException;
+
+import static br.com.sicredi.productstests.exceptions.ApiExceptionTreament.throwIOException;
 
 public class AuthClient {
     private static final String ROOT_URL = "https://dummyjson.com";
@@ -28,7 +29,7 @@ public class AuthClient {
                 .post(RequestBody.create(requestBody, MediaType.parse("application/json")))
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code" + response);
+            if(!response.isSuccessful()) throwIOException(response);
             var responseBody = this.mapper.readValue(response.body().string(), TokenResponseDto.class);
             System.out.println(responseBody);
             return responseBody.token();

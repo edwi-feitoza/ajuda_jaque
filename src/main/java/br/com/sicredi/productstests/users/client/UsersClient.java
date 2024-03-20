@@ -6,9 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-
 import java.io.IOException;
 import java.util.List;
+
+import static br.com.sicredi.productstests.exceptions.ApiExceptionTreament.throwIOException;
 
 public class UsersClient {
 
@@ -27,7 +28,7 @@ public class UsersClient {
                 .url(ROOT_URL + "/users")
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code: " + response);
+            if(!response.isSuccessful()) throwIOException(response);
             var responseHeaders = response.headers();
             for(Short i = 0; i < responseHeaders.size(); i++) {
                 System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
@@ -43,7 +44,7 @@ public class UsersClient {
                 .url(ROOT_URL + "/users/" + userId)
                 .build();
         try(var response = this.client.newCall(request).execute()) {
-            if(!response.isSuccessful()) throw new IOException("Unexpected response code: " + response);
+            if(!response.isSuccessful()) throwIOException(response);
             var responseHeaders = response.headers();
             for(Short i = 0; i < responseHeaders.size(); i++) {
                 System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
