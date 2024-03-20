@@ -5,12 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-
 import java.io.IOException;
 
-public class HealthCheckVerifier {
+import static br.com.sicredi.productstests.commons.Constants.ROOT_URL;
 
-    private static final String ROOT_URL = "https://dummyjson.com";
+public class HealthCheckVerifier {
     private OkHttpClient client;
     private ObjectMapper mapper;
 

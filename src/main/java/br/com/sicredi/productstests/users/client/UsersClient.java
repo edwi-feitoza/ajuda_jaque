@@ -9,11 +9,10 @@ import okhttp3.Request;
 import java.io.IOException;
 import java.util.List;
 
+import static br.com.sicredi.productstests.commons.Constants.ROOT_URL;
 import static br.com.sicredi.productstests.exceptions.ApiExceptionTreament.throwIOException;
 
 public class UsersClient {
-
-    private static final String ROOT_URL = "https://dummyjson.com";
     private OkHttpClient client;
     private ObjectMapper mapper;
 

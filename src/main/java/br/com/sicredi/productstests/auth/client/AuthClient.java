@@ -9,10 +9,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import java.io.IOException;
 
+import static br.com.sicredi.productstests.commons.Constants.ROOT_URL;
 import static br.com.sicredi.productstests.exceptions.ApiExceptionTreament.throwIOException;
 
 public class AuthClient {
-    private static final String ROOT_URL = "https://dummyjson.com";
 
     private OkHttpClient client;
     private ObjectMapper mapper;
