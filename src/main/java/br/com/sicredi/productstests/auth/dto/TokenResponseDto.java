@@ -2,7 +2,7 @@ package br.com.sicredi.productstests.auth.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record TokenDto(
+public record TokenResponseDto(
         @JsonProperty("id")
         Integer id,
 
