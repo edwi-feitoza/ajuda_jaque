@@ -1,5 +1,7 @@
 package br.com.sicredi.productstests.healthcheck;
 
+import br.com.sicredi.productstests.healthcheck.client.dto.HealthCheckResponseDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -10,9 +12,11 @@ public class HealthCheckVerifier {
 
     private static final String ROOT_URL = "https://dummyjson.com";
     private OkHttpClient client;
+    private ObjectMapper mapper;
 
     public HealthCheckVerifier() {
         this.client = new OkHttpClient();
+        this.mapper = new ObjectMapper();
     }
 
     public void verifyHealthCheck() throws IOException{
@@ -26,7 +30,9 @@ public class HealthCheckVerifier {
             for (Integer i = 0; i < responseHeaders.size(); i++) {
                 System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
             }
-            System.out.println(response.body().string());
+            var dtoResponse = this.mapper.readValue(response.body().string(), HealthCheckResponseDto.class);
+            System.out.println(dtoResponse);
+            System.out.println(response.code());
         }
     }
 }
