@@ -37,4 +37,21 @@ public class UsersClient {
             return dtoResponse.users();
         }
     }
+
+    public UserDto getUser(Integer userId) throws IOException{
+        var request = new Request.Builder()
+                .url(ROOT_URL + "/users/" + userId)
+                .build();
+        try(var response = this.client.newCall(request).execute()) {
+            if(!response.isSuccessful()) throw new IOException("Unexpected response code: " + response);
+            var responseHeaders = response.headers();
+            for(Short i = 0; i < responseHeaders.size(); i++) {
+                System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+            }
+
+            var dtoResponse = this.mapper.readValue(response.body().string(), UserDto.class);
+            System.out.println(dtoResponse);
+            return dtoResponse;
+        }
+    }
 }
