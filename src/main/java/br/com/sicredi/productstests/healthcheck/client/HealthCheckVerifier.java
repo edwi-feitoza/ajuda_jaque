@@ -1,6 +1,6 @@
-package br.com.sicredi.productstests.healthcheck;
+package br.com.sicredi.productstests.healthcheck.client;
 
-import br.com.sicredi.productstests.healthcheck.client.dto.HealthCheckResponseDto;
+import br.com.sicredi.productstests.healthcheck.dto.HealthCheckResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
@@ -27,7 +27,7 @@ public class HealthCheckVerifier {
         try(var response = this.client.newCall(request).execute()){
             if(!response.isSuccessful()) throw new IOException("Unexpected response code" + response);
             Headers responseHeaders = response.headers();
-            for (Integer i = 0; i < responseHeaders.size(); i++) {
+            for (Short i = 0; i < responseHeaders.size(); i++) {
                 System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
             }
             var dtoResponse = this.mapper.readValue(response.body().string(), HealthCheckResponseDto.class);

@@ -1,4 +1,4 @@
-package br.com.sicredi.productstests.healthcheck.client.dto;
+package br.com.sicredi.productstests.healthcheck.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

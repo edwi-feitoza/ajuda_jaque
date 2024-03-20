@@ -6,5 +6,14 @@ import java.util.List;
 
 public record UsersDto(
         @JsonProperty("users")
-        List<UserDto> users
+        List<UserDto> users,
+
+        @JsonProperty("total")
+        Short total,
+
+        @JsonProperty("skip")
+        Short skip,
+
+        @JsonProperty("limit")
+        Short limit
 ) {}
